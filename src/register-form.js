@@ -11,11 +11,23 @@ class RegisterForm extends React.Component {
     }
 
     render() {
+        let errorMessage;
+        if (this.props.error) {
+            errorMessage = <div>{this.props.error}</div>;
+        }
+
+        let successMessage;
+        if (this.props.submitSucceeded) {
+            successMessage = <div>Thanks for registering!</div>;
+        }
+
         return (
             <form
                 onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
                 )}>
+                {successMessage}
+                {errorMessage}
                 <Field
                     component={Input}
                     element="input"

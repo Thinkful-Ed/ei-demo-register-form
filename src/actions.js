@@ -29,10 +29,17 @@ export const register = values => dispatch => {
         })
         .then(() => console.log('Submitted with values', values))
         .catch(error => {
+            if (error.reason === 'ValidationError') {
+                return Promise.reject(
+                    new SubmissionError({
+                        [error.location]: error.message
+                    })
+                );
+            }
+
             return Promise.reject(
                 new SubmissionError({
-                    name: 'An error',
-                    email: 'Another error'
+                    _error: 'Could not register at this time'
                 })
             );
         });
