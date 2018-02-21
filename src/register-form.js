@@ -1,6 +1,8 @@
 import React from 'react';
 
-export default class RegisterForm extends React.Component {
+import {reduxForm} from 'redux-form';
+
+class RegisterForm extends React.Component {
     render() {
         return (
             <form>
@@ -19,3 +21,7 @@ export default class RegisterForm extends React.Component {
         );
     }
 }
+
+export default reduxForm({
+    form: 'register'
+})(RegisterForm);
