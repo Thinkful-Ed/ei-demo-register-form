@@ -3,9 +3,16 @@ import React from 'react';
 import {reduxForm, Field} from 'redux-form';
 
 class RegisterForm extends React.Component {
+    onSubmit(values) {
+        console.log(values);
+    }
+
     render() {
         return (
-            <form>
+            <form
+                onSubmit={this.props.handleSubmit(values =>
+                    this.onSubmit(values)
+                )}>
                 <label htmlFor="name">Name</label>
                 <Field component="input" type="text" name="name" id="name" />
                 <label htmlFor="email">Email</label>
