@@ -1,3 +1,5 @@
+import {SubmissionError} from 'redux-form';
+
 export const register = values => dispatch => {
     return fetch('/api/register', {
         method: 'POST',
@@ -26,5 +28,12 @@ export const register = values => dispatch => {
             return;
         })
         .then(() => console.log('Submitted with values', values))
-        .catch(error => console.log('Error submitting', error));
+        .catch(error => {
+            return Promise.reject(
+                new SubmissionError({
+                    name: 'An error',
+                    email: 'Another error'
+                })
+            );
+        });
 };

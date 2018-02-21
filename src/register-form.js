@@ -2,11 +2,12 @@ import React from 'react';
 
 import {reduxForm, Field} from 'redux-form';
 import Input from './input';
+import {register} from './actions';
 import {required, notEmpty, email} from './validators';
 
 class RegisterForm extends React.Component {
     onSubmit(values) {
-        console.log(values);
+        return this.props.dispatch(register(values));
     }
 
     render() {
